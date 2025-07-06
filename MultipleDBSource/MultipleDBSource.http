@@ -4,15 +4,27 @@ GET {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_2
 Accept: application/json
 
 ###
-POST {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_1
+POST {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_2
 Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "Some Test 3",
-  "lastName": "Test 3",
-  "email": "test3@example.com",
-  "address": "12345fg India",
-  "createdTimestamp": "2024-07-06T14:56:00Z",
-  "updatedTimestamp": "2025-07-06T14:56:00Z"
+  "firstName": "Neww wgsg OK",
+  "lastName": "Testgdfg 332",
+  "email": "newwwer4353@example.com",
+  "address": " wersdgsd12fdfg345fg India"
+}
+
+###
+PUT {{MultipleDBSourceSolution_HostAddress}}/api/persons/3ab37075-ab14-46a6-f7bb-08ddbc67122d/DBConnection_2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": "3ab37075-ab14-46a6-f7bb-08ddbc67122d",
+    "firstName": "Some Test 2 upppp",
+    "lastName": "Test 2 updates 222",
+    "fullName": "Some Test 2 Test 2",
+    "email": "test2@example.commmm",
+    "address": "12345 India"
 }

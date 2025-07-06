@@ -51,6 +51,34 @@ public class PersonService : IPersonService
         return newPerson;
     }
 
+    public async Task<Person?> UpdatePersonAsync(Guid id, Person updatedPerson, string database, CancellationToken cancellationToken = default)
+    {
+        // before fetching update the connection
+        DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
+
+        var existingPerson = await _appDbContext.Persons.FindAsync(id);
+
+        if (existingPerson is null)
+        {
+            throw new InvalidOperationException($"Person doesn't exists.");
+        }
+
+        // Update updatedPerson fields (excluding CreatedAt, it should remain unchanged)
+        existingPerson.FirstName = updatedPerson.FirstName;
+        existingPerson.LastName = updatedPerson.LastName;
+        existingPerson.Email = updatedPerson.Email;
+        existingPerson.Address = updatedPerson.Address;
+
+        // Automatically update UpdatedAt in the database
+        existingPerson.UpdatedTimestamp = DateTimeOffset.UtcNow;
+
+        _appDbContext.Persons.Update(existingPerson);
+
+        await _appDbContext.SaveChangesAsync(cancellationToken);
+
+        return existingPerson;
+    }
+
     public async Task<Person?> DeletePersonByIdAsync(Guid id, string database, CancellationToken cancellationToken = default)
     {
         // before fetching update the connection

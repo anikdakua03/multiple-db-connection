@@ -10,5 +10,7 @@ public interface IPersonService
 
     Task<Person?> CreatePersonAsync(Person newPerson, string database, CancellationToken cancellationToken = default);
 
+    Task<Person?> UpdatePersonAsync(Guid id, Person updatedPerson, string database, CancellationToken cancellationToken = default);
+
     Task<Person?> DeletePersonByIdAsync(Guid id, string database, CancellationToken cancellationToken = default);
 }
