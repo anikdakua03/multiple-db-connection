@@ -17,18 +17,18 @@ public class PersonsController : ControllerBase
         _personService = personService;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetPersonsAsync(CancellationToken cancellationToken)
+    [HttpGet("{database}")]
+    public async Task<IActionResult> GetPersonsAsync(string database, CancellationToken cancellationToken)
     {
-        List<Person> res = await _personService.GetAllPersonsAsync(cancellationToken);
+        List<Person> res = await _personService.GetAllPersonsAsync(database, cancellationToken);
 
         return Ok(res);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreatePersonAsync(Person newPerson, CancellationToken cancellationToken)
+    [HttpPost("{database}")]
+    public async Task<IActionResult> CreatePersonAsync(Person newPerson, string database, CancellationToken cancellationToken)
     {
-        Person? res = await _personService.CreatePersonAsync(newPerson, cancellationToken);
+        Person? res = await _personService.CreatePersonAsync(newPerson, database, cancellationToken);
 
         return Ok(res);
     }

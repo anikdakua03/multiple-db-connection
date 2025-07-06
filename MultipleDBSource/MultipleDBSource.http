@@ -1,18 +1,18 @@
 @MultipleDBSourceSolution_HostAddress = http://localhost:5088
 
-GET {{MultipleDBSourceSolution_HostAddress}}/api/persons
+GET {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_2
 Accept: application/json
 
 ###
-POST {{MultipleDBSourceSolution_HostAddress}}/api/persons
+POST {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_1
 Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "Some Test 2",
-  "lastName": "Test 2",
-  "email": "test2@example.com",
-  "address": "12345 India",
-  "createdTimestamp": "2024-07-06T13:56:00Z",
-  "updatedTimestamp": "2025-07-06T13:56:00Z"
+  "firstName": "Some Test 3",
+  "lastName": "Test 3",
+  "email": "test3@example.com",
+  "address": "12345fg India",
+  "createdTimestamp": "2024-07-06T14:56:00Z",
+  "updatedTimestamp": "2025-07-06T14:56:00Z"
 }
