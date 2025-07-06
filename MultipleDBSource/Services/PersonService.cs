@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MultipleDBSourceSolution.Data;
-using MultipleDBSourceSolution.Models;
+using MultipleDBSource.Data;
+using MultipleDBSource.Models;
 
-namespace MultipleDBSourceSolution.Services;
+namespace MultipleDBSource.Services;
 
 public class PersonService : IPersonService
 {
@@ -32,9 +32,9 @@ public class PersonService : IPersonService
             throw new InvalidOperationException($"Person with same email already exists.");
         }
 
-        await _appDbContext.Persons.AddAsync(newPerson, cancellationToken);
+        _ = await _appDbContext.Persons.AddAsync(newPerson, cancellationToken);
 
-        await _appDbContext.SaveChangesAsync(cancellationToken);
+        _ = await _appDbContext.SaveChangesAsync(cancellationToken);
 
         return newPerson;
     }
@@ -48,9 +48,9 @@ public class PersonService : IPersonService
             throw new InvalidOperationException($"Person doesn't exists.");
         }
 
-        _appDbContext.Persons.Remove(existingUser);
+        _ = _appDbContext.Persons.Remove(existingUser);
 
-        await _appDbContext.SaveChangesAsync(cancellationToken);
+        _ = await _appDbContext.SaveChangesAsync(cancellationToken);
 
         return existingUser;
     }

@@ -13,8 +13,8 @@ using MultipleDBSource.Data;
 namespace MultipleDBSourceSolution.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250705160325_Initial_Migrations")]
-    partial class Initial_Migrations
+    [Migration("20250706082412_Add_Migration_For_DB_2")]
+    partial class Add_Migration_For_DB_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,9 @@ namespace MultipleDBSourceSolution.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTimeOffset>("CreatedTimestamp")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -47,6 +50,9 @@ namespace MultipleDBSourceSolution.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("UpdatedTimestamp")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 

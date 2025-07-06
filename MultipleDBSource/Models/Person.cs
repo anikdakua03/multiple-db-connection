@@ -1,4 +1,4 @@
-﻿namespace MultipleDBSourceSolution.Models;
+﻿namespace MultipleDBSource.Models;
 
 public class Person
 {

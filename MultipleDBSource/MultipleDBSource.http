@@ -9,10 +9,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "John 1",
-  "lastName": "Doe 1",
-  "email": "john.doe2@example.com",
-  "address": "123 Main St, Springfield, IL234",
-  "createdTimestamp": "2024-07-05T10:30:00Z",
-  "updatedTimestamp": "2025-07-05T15:45:00Z"
+  "firstName": "Some Test 2",
+  "lastName": "Test 2",
+  "email": "test2@example.com",
+  "address": "12345 India",
+  "createdTimestamp": "2024-07-06T13:56:00Z",
+  "updatedTimestamp": "2025-07-06T13:56:00Z"
 }

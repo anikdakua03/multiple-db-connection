@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using MultipleDBSourceSolution.Data;
-using MultipleDBSourceSolution.Services;
+using MultipleDBSource.Data;
+using MultipleDBSource.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection_1")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection_2")));
 
 builder.Services.AddScoped<IPersonService, PersonService>();
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultipleDBSourceSolution.Models;
-using MultipleDBSourceSolution.Services;
+using MultipleDBSource.Models;
+using MultipleDBSource.Services;
 
-namespace MultipleDBSourceSolution.Controllers;
+namespace MultipleDBSource.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -20,7 +20,7 @@ public class PersonsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetPersonsAsync(CancellationToken cancellationToken)
     {
-        var res = await _personService.GetAllPersonsAsync(cancellationToken);
+        List<Person> res = await _personService.GetAllPersonsAsync(cancellationToken);
 
         return Ok(res);
     }
@@ -28,7 +28,7 @@ public class PersonsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreatePersonAsync(Person newPerson, CancellationToken cancellationToken)
     {
-        var res = await _personService.CreatePersonAsync(newPerson, cancellationToken);
+        Person? res = await _personService.CreatePersonAsync(newPerson, cancellationToken);
 
         return Ok(res);
     }

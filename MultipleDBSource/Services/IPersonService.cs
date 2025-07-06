@@ -1,6 +1,6 @@
-﻿using MultipleDBSourceSolution.Models;
+﻿using MultipleDBSource.Models;
 
-namespace MultipleDBSourceSolution.Services;
+namespace MultipleDBSource.Services;
 
 public interface IPersonService
 {
