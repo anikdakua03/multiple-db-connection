@@ -1,0 +1,18 @@
+@MultipleDBSourceSolution_HostAddress = http://localhost:5088
+
+GET {{MultipleDBSourceSolution_HostAddress}}/api/persons
+Accept: application/json
+
+###
+POST {{MultipleDBSourceSolution_HostAddress}}/api/persons
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "John 1",
+  "lastName": "Doe 1",
+  "email": "john.doe2@example.com",
+  "address": "123 Main St, Springfield, IL234",
+  "createdTimestamp": "2024-07-05T10:30:00Z",
+  "updatedTimestamp": "2025-07-05T15:45:00Z"
+}
