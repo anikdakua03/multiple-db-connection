@@ -11,7 +11,7 @@ public static class DatabaseConnectionHelper
 
         if(string.IsNullOrEmpty(updatedConnectionString) )
         {
-            throw new InvalidProgramException("No databse connection string found.");
+            throw new InvalidProgramException("No database connection string found.");
         }
 
         // remove previous context

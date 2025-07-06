@@ -7,46 +7,54 @@ namespace MultipleDBSource.Services;
 
 public class PersonService : IPersonService
 {
-    private readonly AppDbContext _appDbContext;
+    //private readonly AppDbContext _appDbContext;
+    private readonly IDbConnectionFactory _dbConnectionFactory;
     private readonly IConfiguration _configuration;
 
-    public PersonService(AppDbContext appDbContext, IConfiguration configuration)
+    public PersonService(/* AppDbContext appDbContext,*/ IConfiguration configuration, IDbConnectionFactory dbConnectionFactory)
     {
-        _appDbContext = appDbContext;
+        //_appDbContext = appDbContext;
         _configuration = configuration;
+        _dbConnectionFactory = dbConnectionFactory;
     }
 
     public async Task<List<Person>> GetAllPersonsAsync(string database, CancellationToken cancellationToken = default)
     {
         // before fetching update the connection
-        DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
+        //DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
 
-        return await _appDbContext.Persons.AsNoTracking().ToListAsync(cancellationToken);
+        using var appDbContext = _dbConnectionFactory.CreateDBContext(database);
+
+        return await appDbContext.Persons.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     public async Task<Person?> GetPersonByIdAsync(Guid id, string database, CancellationToken cancellationToken = default)
     {
         // before fetching update the connection
-        DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
+        //DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
 
-        return await _appDbContext.Persons.FirstOrDefaultAsync(a => a.Id == id, cancellationToken: cancellationToken);
+        using var appDbContext = _dbConnectionFactory.CreateDBContext(database);
+
+        return await appDbContext.Persons.FirstOrDefaultAsync(a => a.Id == id, cancellationToken: cancellationToken);
     }
 
     public async Task<Person?> CreatePersonAsync(Person newPerson, string database, CancellationToken cancellationToken = default)
     {
         // before fetching update the connection
-        DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
+        //DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
 
-        Person? existingUser = await _appDbContext.Persons.FirstOrDefaultAsync(a => a.Email == newPerson.Email, cancellationToken: cancellationToken);
+        using var appDbContext = _dbConnectionFactory.CreateDBContext(database);
+
+        Person? existingUser = await appDbContext.Persons.FirstOrDefaultAsync(a => a.Email == newPerson.Email, cancellationToken: cancellationToken);
 
         if (existingUser is not null)
         {
             throw new InvalidOperationException($"Person with same email already exists.");
         }
 
-        _ = await _appDbContext.Persons.AddAsync(newPerson, cancellationToken);
+        await appDbContext.Persons.AddAsync(newPerson, cancellationToken);
 
-        _ = await _appDbContext.SaveChangesAsync(cancellationToken);
+        await appDbContext.SaveChangesAsync(cancellationToken);
 
         return newPerson;
     }
@@ -54,9 +62,11 @@ public class PersonService : IPersonService
     public async Task<Person?> UpdatePersonAsync(Guid id, Person updatedPerson, string database, CancellationToken cancellationToken = default)
     {
         // before fetching update the connection
-        DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
+        //DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
 
-        var existingPerson = await _appDbContext.Persons.FindAsync(id);
+        using var appDbContext = _dbConnectionFactory.CreateDBContext(database);
+
+        var existingPerson = await appDbContext.Persons.FindAsync(id);
 
         if (existingPerson is null)
         {
@@ -72,9 +82,9 @@ public class PersonService : IPersonService
         // Automatically update UpdatedAt in the database
         existingPerson.UpdatedTimestamp = DateTimeOffset.UtcNow;
 
-        _appDbContext.Persons.Update(existingPerson);
+        appDbContext.Persons.Update(existingPerson);
 
-        await _appDbContext.SaveChangesAsync(cancellationToken);
+        await appDbContext.SaveChangesAsync(cancellationToken);
 
         return existingPerson;
     }
@@ -82,18 +92,20 @@ public class PersonService : IPersonService
     public async Task<Person?> DeletePersonByIdAsync(Guid id, string database, CancellationToken cancellationToken = default)
     {
         // before fetching update the connection
-        DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
+        //DatabaseConnectionHelper.UpdateConnectionString(database, _appDbContext, _configuration);
 
-        Person? existingUser = await _appDbContext.Persons.FirstOrDefaultAsync(a => a.Id == id, cancellationToken: cancellationToken);
+        using var appDbContext = _dbConnectionFactory.CreateDBContext(database);
+
+        Person? existingUser = await appDbContext.Persons.FirstOrDefaultAsync(a => a.Id == id, cancellationToken: cancellationToken);
 
         if (existingUser is null)
         {
             throw new InvalidOperationException($"Person doesn't exists.");
         }
 
-        _ = _appDbContext.Persons.Remove(existingUser);
+        appDbContext.Persons.Remove(existingUser);
 
-        _ = await _appDbContext.SaveChangesAsync(cancellationToken);
+        _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
         return existingUser;
     }
