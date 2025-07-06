@@ -28,3 +28,9 @@ Content-Type: application/json
     "email": "test2@example.commmm",
     "address": "12345 India"
 }
+
+###
+DELETE {{MultipleDBSourceSolution_HostAddress}}/api/persons/3ab37075-ab14-46a6-f7bb-08ddbc67122d/DBConnection_2
+Accept: application/json
+Content-Type: application/json
+
