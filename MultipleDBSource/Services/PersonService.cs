@@ -78,6 +78,8 @@ public class PersonService : IPersonService
         existingPerson.LastName = updatedPerson.LastName;
         existingPerson.Email = updatedPerson.Email;
         existingPerson.Address = updatedPerson.Address;
+        existingPerson.Details = updatedPerson.Details;
+        existingPerson.History = updatedPerson.History;
 
         // Automatically update UpdatedAt in the database
         existingPerson.UpdatedTimestamp = DateTimeOffset.UtcNow;

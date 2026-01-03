@@ -17,4 +17,8 @@ public class Person
     public DateTimeOffset CreatedTimestamp { get; set; }
 
     public DateTimeOffset UpdatedTimestamp { get; set; }
+
+    public MoreInfo? Details { get; set; } // JSON column
+
+    public AuditTrail? History { get; set; }   // JSON column
 }

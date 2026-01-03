@@ -9,24 +9,50 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "Neww wgsg OK",
-  "lastName": "Testgdfg 332",
-  "email": "newwwer4353@example.com",
-  "address": " wersdgsd12fdfg345fg India"
+  "firstName": "999",
+  "lastName": "99679",
+  "email": "newwwer1542432121@example.com",
+  "address": " wersdgsd12fdfg345fg India  456745"
 }
 
 ###
-PUT {{MultipleDBSourceSolution_HostAddress}}/api/persons/3ab37075-ab14-46a6-f7bb-08ddbc67122d/DBConnection_2
+PUT {{MultipleDBSourceSolution_HostAddress}}/api/persons/45f42eb4-48db-44a0-f7ba-08ddbc67122d/DBConnection_2
 Accept: application/json
 Content-Type: application/json
 
 {
-    "id": "3ab37075-ab14-46a6-f7bb-08ddbc67122d",
-    "firstName": "Some Test 2 upppp",
-    "lastName": "Test 2 updates 222",
-    "fullName": "Some Test 2 Test 2",
+    "id": "45f42eb4-48db-44a0-f7ba-08ddbc67122d",
+    "firstName": "testtttt",
+    "lastName": " 2 testtt 222",
+    "fullName": " Test 2 Test 2",
     "email": "test2@example.commmm",
-    "address": "12345 India"
+    "address": "12345",
+    "details": {
+      "firstName": " OK 25235",
+      "lastName": " 332 25 52",
+      "fullName": "23456236 OK Testgdfg 332",
+      "address": " wersdgsd12fdfg345fg India",
+      "userPrefs": {
+        "theme" : "dark",
+        "notifications" : false
+      },
+      "contacts": [
+        {
+          "name" : "emergency 1",
+          "phone" : "123121",
+          "relationship" : "none"
+        },
+        {
+          "name" : "emergency 21",
+          "phone" : "22222",
+          "relationship" : "QWERTY"
+        }
+      ]
+    },
+    "history": {
+      "createdBy" : "admin",
+      "modifiedAt" : "2025-07-06T14:24:36.45"
+    }
 }
 
 ###
