@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MultipleDBSource.Models;
 using MultipleDBSource.Services;
-using System.Net.NetworkInformation;
 
 namespace MultipleDBSource.Controllers;
 

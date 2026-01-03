@@ -1,4 +1,4 @@
-@MultipleDBSourceSolution_HostAddress = http://localhost:5088
+@MultipleDBSourceSolution_HostAddress =  http://localhost:5088
 
 GET {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_2
 Accept: application/json
@@ -34,3 +34,7 @@ DELETE {{MultipleDBSourceSolution_HostAddress}}/api/persons/3ab37075-ab14-46a6-f
 Accept: application/json
 Content-Type: application/json
 
+### Migration testing for DB2
+GET {{MultipleDBSourceSolution_HostAddress}}/api/persons/DBConnection_2
+Accept: application/json
+Content-Type: application/json
