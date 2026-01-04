@@ -15,11 +15,10 @@ namespace MultipleDBSource.Migrations
             // and applies them to the DB when you run 'migrate'
             migrationBuilder.ApplySqlScripts("Types");
             migrationBuilder.ApplySqlScripts("StoredProcedures");
-            //migrationBuilder.ApplySqlScripts("Indexes"); // NOTE : Creating index on exisitng db may be costly since have data already 
+            // NOTE : Creating index on exisitng db may be costly since have data already 
+            // Also can be added in entity configuration
+            //migrationBuilder.ApplySqlScripts("Indexes"); 
             migrationBuilder.ApplySqlScripts("Functions");
-
-            migrationBuilder.Sql("PRINT 'Running Functions scripts';");
-
         }
 
         /// <inheritdoc />
