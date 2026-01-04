@@ -136,7 +136,7 @@ public class AppDbContext : DbContext
             // 2. Configure the 'History' Column
             entity.OwnsOne(p => p.History, nav => nav.ToNativeJsonRoot());
 
-            // 3. THE FIX: Apply the native type ONLY to the top-level navigations
+            // 3. Apply the native type ONLY to the top-level navigations
             // These are the only "Containers"
             ConfigureNativeJson(entity, nameof(Person.Details));
             ConfigureNativeJson(entity, nameof(Person.History));
@@ -145,7 +145,12 @@ public class AppDbContext : DbContext
         });
     }
 
-    // Helper method to apply the Native SQL 2025 type safely
+    /// <summary>
+    /// Configure the native JSON type for the owned navigation property
+    /// </summary>
+    /// <typeparam name="T">Type of the entity</typeparam>
+    /// <param name="builder">The EntityTypeBuilder</param>
+    /// <param name="propertyName">The name of the property to configure</param>
     private static void ConfigureNativeJson<T>(EntityTypeBuilder<T> builder, string propertyName) where T : class
     {
         IMutableNavigation? navigation = builder.Metadata.FindNavigation(propertyName);
